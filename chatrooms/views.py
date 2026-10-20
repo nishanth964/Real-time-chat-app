@@ -1,5 +1,10 @@
 from django.shortcuts import render, HttpResponse
+from .models import ChatRoom
 
 # Create your views here.
 def index(request):
-    return render(request, 'chatrooms/index.html')
+    chatrooms=ChatRoom.objects.all()
+    context={
+        'chatrooms':chatrooms
+    }
+    return render(request, 'chatrooms/index.html', context)

@@ -1,1 +1,5 @@
-<h1>This is the index Page</h1>
+<div>
+    {% for chatroom in chatrooms %}
+        <a href="">{{chatroom.name}}</a>
+    {% endfor %}
+</div>
