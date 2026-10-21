@@ -1,17 +1,21 @@
-from django.shortcuts import render, HttpResponse
+from django.shortcuts import render, get_object_or_404
 from .models import ChatRoom
 
-# Create your views here.
+
 def index(request):
-    chatrooms=ChatRoom.objects.all()
-    context={
-        'chatrooms':chatrooms
-    }
-    return render(request, 'chatrooms/index.html', context)
+    chatrooms = ChatRoom.objects.all()
+    return render(
+        request,
+        "chatrooms/index.html",
+        {"chatrooms": chatrooms},
+    )
+
 
 def chats(request, slug):
-    chatrooms=ChatRoom.objects.get(slug=slug)
-    context={
-        'chatrooms':chatrooms
-    }
-    return render(request, 'chatrooms/chats.html', context)
+    chatroom = get_object_or_404(ChatRoom, slug=slug)
+    messages = chatroom.messages.order_by("timestamp")
+
+    return render(request, "chatrooms/chats.html", {
+        "chatrooms": chatroom,
+        "messages": messages,
+    })
