@@ -5,5 +5,5 @@ app_name='rooms'
 
 urlpatterns = [
     path('', views.index, name='index'),
-    
+    path('<slug:slug>', views.chats, name='chats')
 ]
