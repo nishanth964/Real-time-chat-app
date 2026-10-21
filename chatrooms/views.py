@@ -8,3 +8,10 @@ def index(request):
         'chatrooms':chatrooms
     }
     return render(request, 'chatrooms/index.html', context)
+
+def chats(request, slug):
+    chatrooms=ChatRoom.objects.get(slug=slug)
+    context={
+        'chatrooms':chatrooms
+    }
+    return render(request, 'chatrooms/chats.html', context)

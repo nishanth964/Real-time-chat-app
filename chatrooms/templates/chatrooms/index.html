@@ -1,5 +1,5 @@
 <div>
     {% for chatroom in chatrooms %}
-        <a href="">{{chatroom.name}}</a>
+        <a href="{% url 'rooms:chats' chatroom.slug %}">{{chatroom.name}}</a>
     {% endfor %}
 </div>
